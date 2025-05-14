@@ -34,7 +34,7 @@ const useInventory = (steamId: string) => {
   useEffect(() => {
     const fetchInventory = async () => {
       try {
-        const response = await fetch(`/steam/inventory/${steamId}/730/2?l=english&count=5000`);
+        const response = await fetch(`/api/steam-inventory?steamId=${steamId}`);
         const raw = await response.json();
         console.log("🔎 Raw Steam inventory:", raw);
 
