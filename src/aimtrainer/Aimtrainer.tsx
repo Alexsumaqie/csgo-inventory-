@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './AimTrainer.css';
+import './Aimtrainer.css';
 
 const AimTrainer: React.FC = () => {
   const navigate = useNavigate();
