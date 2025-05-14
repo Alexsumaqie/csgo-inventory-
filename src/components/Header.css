@@ -1,0 +1,138 @@
+.app-header {
+  width: 100%;
+  padding: 12px 24px;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.header-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #00bcd4;
+}
+
+.nav-links {
+  display: flex;
+  gap: 16px;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: #1e90ff;
+  text-shadow: 0 0 6px rgba(30, 144, 255, 0.5);
+}
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.header-right {
+  position: relative;
+  margin-right: 1.5rem; /* <-- adjust as needed */
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.theme-dropdown {
+  position: absolute;
+  top: 120%;
+  right: 0;
+  background: #1a1a2e;
+  border: 1px solid #333;
+  border-radius: 6px;
+  overflow: hidden;
+  z-index: 999;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  min-width: 160px;
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: white;
+  transition: transform 0.2s;
+}
+.theme-toggle:hover {
+  transform: scale(1.2);
+}
+
+.profile-box {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #1e90ff;
+}
+
+.profile-name {
+  font-weight: 500;
+  color: #ffffff;
+}
+.header-right {
+  position: relative;
+}
+
+/* Fix dropdown */
+.theme-dropdown {
+  position: absolute;
+  top: 110%; /* push down slightly below the button */
+  right: 0;
+  background: #1a1a2e;
+  border: 1px solid #333;
+  border-radius: 6px;
+  overflow: hidden;
+  z-index: 999;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  min-width: 160px;
+}
+
+.theme-option {
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  color: white;
+  transition: background 0.2s ease;
+  font-size: 0.9rem;
+}
+.theme-option:hover {
+  background: var(--accent);
+  color: black;
+}
+.theme-option.active {
+  font-weight: bold;
+  background: #2e2e40;
+}
+.xp-label {
+  color: #00ffee;
+  font-weight: bold;
+  font-family: 'Orbitron', sans-serif;
+  background: #111;
+  padding: 0.4rem 1rem;
+  border-radius: 10px;
+  border: 1px solid #00ffee88;
+  box-shadow: 0 0 10px #00ffee55;
+  margin-left: auto;
+}

@@ -1,0 +1,23 @@
+.crosshair-overlay {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  mix-blend-mode: difference;
+}
+
+.crosshair-vertical {
+  width: 2px;
+  height: 40px;
+  background-color: white;
+}
+
+.crosshair-horizontal {
+  position: absolute;
+  width: 40px;
+  height: 2px;
+  background-color: white;
+}

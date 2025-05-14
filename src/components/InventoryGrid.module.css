@@ -1,0 +1,560 @@
+/* Wrapper layout */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: linear-gradient(to right, #1a1a2e, #16213e);
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Centered container that can be removed if you want full 100% edge-to-edge */
+.container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0 40px;
+}
+
+/* Title with fade animation */
+.title {
+  font-size: 48px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  animation: floatRotate 6s ease-in-out infinite;
+  background: linear-gradient(90deg, #ff4b2b, #ff416c, #3f5efb, #24c6dc);
+  background-size: 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transform-style: preserve-3d;
+  perspective: 800px;
+}
+
+@keyframes floatRotate {
+  0% {
+    transform: translateY(0px) rotateX(0deg) rotateZ(0deg);
+    background-position: 0% 50%;
+  }
+  50% {
+    transform: translateY(-8px) rotateX(5deg) rotateZ(1deg);
+    background-position: 100% 50%;
+  }
+  100% {
+    transform: translateY(0px) rotateX(0deg) rotateZ(0deg);
+    background-position: 0% 50%;
+  }
+}
+.card:hover {
+  transform: perspective(800px) rotateY(5deg) rotateX(1deg) scale(1.05);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  transform: scale(1.2);
+}
+.image {
+  width: 100%;
+  height: 90px;
+  object-fit: contain;
+  transition: transform 0.3s ease, filter 0.4s ease;
+  animation: imageGlow 8s ease-in-out infinite;
+}
+
+@keyframes imageGlow {
+  0% {
+    filter: brightness(1) hue-rotate(0deg);
+  }
+  50% {
+    filter: brightness(1.15) hue-rotate(10deg);
+  }
+  100% {
+    filter: brightness(1) hue-rotate(0deg);
+  }
+}
+
+.card:hover .image {
+  transform: scale(1.08);
+  filter: brightness(1.3);
+}
+
+
+@keyframes glowTitle {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Search bar */
+.searchContainer {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.searchInput {
+  padding: 10px 16px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: 1px solid #444;
+  background-color: #2a2d3e;
+  color: white;
+  width: 320px;
+}
+
+/* Grid layout */
+.grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 20px;
+  width: 100%;
+  margin-bottom: 20px;
+  align-content: start;
+  /* Avoid grid centering */
+}
+
+/* Card style */
+.card {
+  position: relative;
+  overflow: hidden; /* 👈 makes sure zoom stays inside the card */
+  background-color: #2c2f3a;
+  border-radius: 12px;
+  padding: 12px;
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform;
+}
+
+@keyframes floatCard {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-4px); }
+}
+
+.card:hover {
+  transform: perspective(600px) rotateY(5deg) scale(1.05);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+/* Image inside cards */
+.image {
+  width: 100%;
+  height: 90px;
+  object-fit: contain;
+  transition: transform 0.4s ease;
+  animation: imageGlow 8s ease-in-out infinite;
+}
+
+/* Skin name label */
+.label {
+  margin-top: 8px;
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Pagination buttons */
+.pagination {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.pageButton {
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  background-color: #2c2f3a;
+  color: #ccc;
+  cursor: pointer;
+}
+
+.pageButton.active {
+  background-color: #2563eb;
+  color: white;
+}
+
+/* Modal styling */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.modal {
+  background: #1e1e2f;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 450px;
+  max-width: 90%;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+  color: #fff;
+}
+
+.closeButton {
+  margin-top: 1rem;
+  background: #e74c3c;
+  border: none;
+  color: white;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+/* Floating image effect */
+.floatingImageContainer {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  height: 180px;
+}
+.floatingImage {
+  width: 220px;
+  animation: floatUpDown 2.5s ease-in-out infinite;
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.1));
+}
+@keyframes floatUpDown {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.centered {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 18px;
+  color: #ccc;
+}
+.rarityTag {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  animation: glow 2s ease-in-out infinite alternate;
+  box-shadow: 0 0 10px rgba(255,255,255,0.15);
+}
+.smokeOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -5;
+  background-image: url('/assets/smoke.gif'); /* Use a transparent smoke loop */
+  background-size: cover;
+  opacity: 0.04;
+  animation: slowPulse 30s ease-in-out infinite;
+}
+
+@keyframes slowPulse {
+  0% { opacity: 0.03; }
+  50% { opacity: 0.06; }
+  100% { opacity: 0.03; }
+}
+
+/* CS:GO skin rarity system */
+.rarity-ConsumerGrade {
+  background-color: #b0c3d9;
+  color: black;
+}
+
+/* light gray */
+.rarity-IndustrialGrade {
+  background-color: #5e98d9;
+  color: white;
+}
+
+/* light blue */
+.rarity-MilSpecGrade {
+  background-color: #4b69ff;
+  color: white;
+}
+
+/* blue */
+.rarity-Restricted {
+  background-color: #8847ff;
+  color: white;
+}
+
+/* purple */
+.rarity-Classified {
+  background-color: #d32ce6;
+  color: white;
+}
+
+/* pink */
+.rarity-Covert {
+  background-color: #eb4b4b;
+  color: white;
+}
+
+/* red */
+.rarity-Contraband {
+  background-color: orange;
+  color: white;
+}
+
+/* deprecated tier */
+
+/* Sticker / music kit / graffiti rarities */
+.rarity-BaseGrade {
+  background-color: #b0c3d9;
+  color: black;
+}
+
+.rarity-HighGrade {
+  background-color: #4b69ff;
+  color: white;
+}
+
+.rarity-Remarkable {
+  background-color: #8847ff;
+  color: white;
+}
+
+.rarity-Exotic {
+  background-color: #d32ce6;
+  color: white;
+}
+
+.rarity-Extraordinary {
+  background-color: #eb4b4b;
+  color: white;
+}
+
+/* Agent tiers */
+.rarity-MasterAgent {
+  background-color: #eb4b4b;
+  color: white;
+}
+
+.rarity-Distinguished {
+  background-color: #5e98d9;
+  color: white;
+}
+
+.rarity-Superior {
+  background-color: #8847ff;
+  color: white;
+}
+
+
+.skinDetails {
+  font-size: 14px;
+  color: #ccc;
+  text-align: left;
+  margin-top: 10px;
+  line-height: 1.6;
+}
+.rarityTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  animation: pulseGlow 2s infinite ease-in-out;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease;
+}
+
+.rarityTag:hover {
+  transform: scale(1.05);
+}
+@keyframes glow {
+  0% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  100% {
+    transform: scale(1.03);
+    filter: brightness(1.3);
+  }
+}
+@keyframes pulseGlow {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.3); }
+}
+.inspectButton {
+  margin-top: 12px;
+  background: #2563eb;
+  border: none;
+  color: white;
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.inspectButton:hover {
+  background-color: #1e4fc1;
+}
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 10, 20, 0.85);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: rgba(28, 28, 48, 0.9);
+  backdrop-filter: blur(6px);
+  padding: 2rem;
+  border-radius: 16px;
+  width: 400px;
+  max-width: 95%;
+  color: #fff;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  animation: fadeInScale 0.3s ease;
+}
+
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.fullScreenContainer {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow-y: auto;
+  z-index: 0;
+}
+
+.backgroundAnimated {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(-45deg, #1a1a2e, #16213e, #0f3460, #53354a);
+  background-size: 600% 600%;
+  animation: animatedGradient 15s ease infinite;
+  z-index: -10;
+}
+
+@keyframes animatedGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.smokeOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/assets/smoke.gif'); /* Replace with your file */
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: -9;
+  animation: slowPulse 30s ease-in-out infinite;
+}
+
+@keyframes slowPulse {
+  0% { opacity: 0.02; }
+  50% { opacity: 0.06; }
+  100% { opacity: 0.02; }
+}
+.buttonRow {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+  gap: 0.75rem;
+}
+
+.viewButton {
+  flex: 1;
+  background: linear-gradient(90deg, #00ffcc, #00bfff);
+  color: black;
+  font-weight: 600;
+  padding: 0.6rem 1rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 0 12px rgba(0, 255, 204, 0.4);
+}
+
+.viewButton:hover {
+  background: linear-gradient(90deg, #00e6b8, #00aacc);
+  box-shadow: 0 0 16px rgba(0, 255, 204, 0.7);
+  transform: scale(1.03);
+}
+
+.closeButton {
+  flex: 1;
+  background: #333;
+  color: white;
+  font-weight: 500;
+  padding: 0.6rem 1rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+.closeButton:hover {
+  background: #555;
+}

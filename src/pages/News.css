@@ -1,0 +1,219 @@
+/* News.css */
+
+.news-container {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.news-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.news-card {
+  background-color: #1e1e1e;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  transition: box-shadow 0.3s ease;
+}
+
+.news-card:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
+}
+
+.news-card h2 {
+  font-size: 1.25rem;
+  color: #ffffff;
+}
+
+.news-card p {
+  color: #cccccc;
+  margin-top: 0.5rem;
+}
+
+.news-date {
+  font-size: 0.875rem;
+  color: #888888;
+}
+
+.news-link {
+  display: inline-block;
+  margin-top: 1rem;
+  color: #4ea0ff;
+  text-decoration: none;
+}
+
+.news-link:hover {
+  text-decoration: underline;
+}
+/* Neon glow shadows */
+.glow-cyan {
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+}
+
+.glow-lime {
+  box-shadow: 0 0 12px rgba(100, 255, 100, 0.5);
+}
+
+.glow-blue {
+  box-shadow: 0 0 25px rgba(0, 150, 255, 0.4);
+}
+
+/* Floating hover animation */
+.float-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.float-card:hover {
+  transform: translateY(-6px) scale(1.015);
+  box-shadow: 0 12px 40px rgba(0, 255, 255, 0.1);
+}
+
+/* Read more button effect */
+.read-button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.25s ease;
+}
+.read-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.4s ease;
+}
+.read-button:hover::after {
+  left: 100%;
+}
+
+/* Glassmorphism background */
+.glass-bg {
+  background: rgba(24, 24, 24, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Animated gradient headline */
+.glow-title {
+  background: linear-gradient(90deg, #0ff, #0f0, #ff0);
+  background-size: 300% 300%;
+  animation: glowMove 6s ease infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+@keyframes glowMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+/* Badge styling for CS2 sections */
+.bb-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  margin: 10px 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  border-radius: 9999px;
+  background: linear-gradient(to right, #0ff, #09f);
+  color: black;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+  transition: transform 0.2s ease;
+}
+.bb-badge:hover {
+  transform: scale(1.05);
+}
+
+/* Section container highlight */
+.cs2-section {
+  padding: 0.75rem 1rem;
+  margin: 0.5rem 0;
+  border-left: 4px solid #0ff;
+  background: rgba(0, 10, 20, 0.4);
+  border-radius: 0.75rem;
+}
+.bb-badge {
+  background: linear-gradient(to right, #1e293b, #0f172a);
+  padding: 0.4rem 1rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  color: #38bdf8;
+  margin-bottom: 0.4rem;
+  margin-top: 1rem;
+  display: inline-block;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.bb-badge:hover {
+  background: #164e63;
+  color: #a5f3fc;
+  transform: translateY(-2px);
+}
+
+.cs2-section {
+  background: rgba(2, 6, 23, 0.8);
+  border: 1px solid #334155;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  overflow: hidden;
+}
+.collapsed {
+  max-height: 0 !important;
+  opacity: 0;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.bb-toggle {
+  cursor: pointer;
+  display: inline-block;
+}
+
+.bb-badge {
+  background: linear-gradient(to right, #1e293b, #0f172a);
+  padding: 0.4rem 1rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  color: #38bdf8;
+  margin-bottom: 0.4rem;
+  margin-top: 1rem;
+  display: inline-block;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+  transition: all 0.3s ease;
+}
+
+.bb-badge:hover {
+  background: #164e63;
+  color: #a5f3fc;
+  transform: translateY(-2px);
+}
+
+.cs2-section {
+  background: rgba(2, 6, 23, 0.8);
+  border: 1px solid #334155;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  overflow: hidden;
+}

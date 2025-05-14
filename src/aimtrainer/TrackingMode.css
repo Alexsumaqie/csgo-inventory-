@@ -1,0 +1,103 @@
+.tracking-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: radial-gradient(#111, #000);
+    animation: backgroundFloat 20s linear infinite;
+}
+
+.tracking-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.tracking-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(20, 20, 20, 0.85);
+    padding: 2rem 3rem;
+    border: 2px solid #ff9800;
+    border-radius: 15px;
+    color: white;
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+    box-shadow: 0 0 30px orange;
+    animation: glowPulse 2s infinite;
+}
+
+.retry-button {
+    margin-top: 1rem;
+    padding: 0.8rem 1.5rem;
+    background: #ff9800;
+    border: none;
+    color: #000;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.retry-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px #ff9800;
+}
+
+@keyframes backgroundFloat {
+    0% { background-position: 0 0; }
+    50% { background-position: 100% 100%; }
+    100% { background-position: 0 0; }
+}
+
+@keyframes glowPulse {
+    0%, 100% { box-shadow: 0 0 10px orange; }
+    50% { box-shadow: 0 0 25px gold; }
+}
+
+@keyframes zoom-in {
+    from { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+    to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+.zoom-in {
+    animation: zoom-in 0.4s ease forwards;
+}
+
+.fade-in {
+    animation: fadeIn 1s ease forwards;
+}
+
+.fade-out {
+    animation: fadeOut 1s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+}
+
+.tracking-container {
+    position: fixed;
+    top: 60px; /* height of your header */
+    left: 0;
+    height: calc(100vh - 60px); /* subtract header */
+    width: 100vw;
+    overflow: hidden;
+    background: radial-gradient(#111, #000);
+}
+

@@ -1,0 +1,34 @@
+:root {
+  --bg: #0e0e1c;
+  --text: #fff;
+  --accent: #00e6e6;
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+body.theme-dark {
+  --bg: #0e0e1c;
+  --text: #ffffff;
+  --accent: #00e6e6;
+}
+
+body.theme-neon {
+  --bg: #080818;
+  --text: #f0faff;
+  --accent: #0ff;
+  background: radial-gradient(circle at 30% 30%, #0ff2, #000 90%);
+}
+
+body.theme-magenta {
+  --bg: #1c0b2b;
+  --text: #ffdbff;
+  --accent: #ff4cf0;
+}
+
+body.theme-retro {
+  --bg: #010b04;
+  --text: #39ff14;
+  --accent: #39ff14;
+  font-family: 'Courier New', monospace;
+  text-shadow: 0 0 4px #39ff14;
+}

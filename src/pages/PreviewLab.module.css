@@ -1,0 +1,357 @@
+.wrapper {
+  display: flex;
+  height: 100vh;
+  background: linear-gradient(to right, #0e0e1c, #14192d);
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+  overflow: hidden;
+}
+
+.leftPanel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  overflow: hidden;
+}
+
+.rightPanel {
+  width: 400px;
+  background-color: #1a1a2e;
+  padding: 2rem;
+  border-left: 1px solid #2d2d3a;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.skinName {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.skinMeta {
+  font-size: 0.9rem;
+  color: #ccc;
+  margin-bottom: 1.5rem;
+}
+
+.meta {
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.inspectLink {
+  font-size: 0.85rem;
+  color: #58aaff;
+  text-decoration: underline;
+  margin-top: 1rem;
+  display: inline-block;
+}
+
+.backButton {
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.sliderContainer {
+  margin-top: 2rem;
+  width: 70%;
+  text-align: center;
+}
+
+.floatText {
+  margin-top: 0.3rem;
+  font-size: 0.85rem;
+  color: #aaa;
+}
+
+.imageContainer {
+  position: relative;
+  display: inline-block;
+}
+
+.weaponImage {
+  max-width: 480px;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid #444;
+  box-shadow: 0 0 24px rgba(0, 255, 255, 0.1);
+}
+
+.wearOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("/scratches.png"), rgba(0, 0, 0, 0.4);
+  background-blend-mode: multiply;
+  background-size: cover;
+  pointer-events: none;
+  transition: opacity 0.2s ease-in-out;
+  border-radius: 8px;
+}
+
+.stattrak {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: #ff7518;
+  color: white;
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.zoomCue {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  font-size: 0.75rem;
+  opacity: 0.6;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 4px 6px;
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+.centerScreen {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: #0e0e1c;
+  color: white;
+}
+
+/* Rarity glow tags */
+.rarityCovert {
+  color: #ff4b5c;
+  text-shadow: 0 0 8px rgba(255, 75, 92, 0.7);
+}
+.rarityClassified {
+  color: #b46ff2;
+  text-shadow: 0 0 8px rgba(180, 111, 242, 0.7);
+}
+.rarityRestricted {
+  color: #c880ff;
+  text-shadow: 0 0 8px rgba(200, 128, 255, 0.5);
+}
+.rarityMilSpec {
+  color: #4fa8ff;
+  text-shadow: 0 0 8px rgba(79, 168, 255, 0.6);
+}
+.rarityConsumer {
+  color: #bbb;
+}
+.wrapper {
+  display: flex;
+  height: 100vh;
+  background: linear-gradient(to right, #0c0f1f, #14192d);
+  color: #ffffff;
+  font-family: 'Segoe UI', sans-serif;
+  overflow: hidden;
+}
+
+.leftPanel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem;
+  overflow: hidden;
+}
+
+.rightPanel {
+  width: 420px;
+  backdrop-filter: blur(12px);
+  background: rgba(26, 26, 46, 0.8);
+  padding: 2.5rem;
+  border-left: 1px solid #2a2f40;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: -8px 0 24px rgba(0, 0, 0, 0.3);
+}
+
+.skinName {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  color: #fefefe;
+}
+
+.typeText {
+  font-size: 1rem;
+  color: #aaa;
+  margin-bottom: 1rem;
+}
+
+.meta {
+  font-size: 0.95rem;
+  color: #ccc;
+  margin-bottom: 0.5rem;
+}
+
+.inspectLink {
+  font-size: 0.88rem;
+  color: #56b1ff;
+  text-decoration: none;
+  margin-top: 1rem;
+  display: inline-block;
+  transition: color 0.2s ease-in-out;
+}
+.inspectLink:hover {
+  color: #90ccff;
+}
+
+.backButton {
+  margin-top: 2rem;
+  width: 100%;
+  font-weight: 600;
+  background: linear-gradient(90deg, #00c37a, #00e06b);
+  color: #fff;
+  transition: background 0.2s ease-in-out;
+}
+.backButton:hover {
+  background: linear-gradient(90deg, #00d88a, #00ff84);
+}
+
+.sliderContainer {
+  margin-top: 2.5rem;
+  width: 70%;
+  text-align: center;
+}
+
+.floatText {
+  margin-top: 0.4rem;
+  font-size: 0.9rem;
+  color: #aaa;
+}
+
+.weaponImage {
+  max-width: 500px;
+  max-height: 380px;
+  object-fit: contain;
+  border-radius: 10px;
+  border: 1px solid #444;
+  box-shadow: 0 0 32px rgba(0, 255, 255, 0.15);
+  transition: transform 0.3s ease-in-out;
+}
+.weaponImage:hover {
+  transform: scale(1.02);
+}
+
+.imageCard {
+  position: relative;
+  display: inline-block;
+}
+
+.wearOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("/scratches.png"), rgba(0, 0, 0, 0.3);
+  background-blend-mode: multiply;
+  background-size: cover;
+  pointer-events: none;
+  transition: opacity 0.2s ease-in-out;
+  border-radius: 10px;
+}
+
+.zoomCue {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 0.75rem;
+  opacity: 0.7;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 4px 6px;
+  border-radius: 4px;
+  color: #ccc;
+  pointer-events: none;
+}
+
+.centerScreen {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: #0e0e1c;
+  color: white;
+}
+
+/* Rarity Glow Enhancements */
+.rarityPill {
+  padding: 0.3rem 0.7rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+  display: inline-block;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.rarityCovert {
+  color: #ff4b5c;
+  text-shadow: 0 0 10px rgba(255, 75, 92, 0.9);
+}
+.rarityClassified {
+  color: #b46ff2;
+  text-shadow: 0 0 10px rgba(180, 111, 242, 0.8);
+}
+.rarityRestricted {
+  color: #c880ff;
+  text-shadow: 0 0 10px rgba(200, 128, 255, 0.6);
+}
+.rarityMilSpec {
+  color: #4fa8ff;
+  text-shadow: 0 0 10px rgba(79, 168, 255, 0.7);
+}
+.rarityConsumer {
+  color: #bbb;
+  text-shadow: 0 0 4px rgba(255, 255, 255, 0.2);
+}
+.weaponImage {
+  opacity: 0;
+  animation: fadeInZoom 0.8s ease forwards;
+}
+@keyframes fadeInZoom {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.rarityPill::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120%;
+  height: 120%;
+  border-radius: 999px;
+  filter: blur(12px);
+  opacity: 0.6;
+  z-index: -1;
+  animation: pulseGlow 2.5s infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+  50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.9; }
+}

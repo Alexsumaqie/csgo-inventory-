@@ -1,0 +1,41 @@
+.float-tools-wrapper {
+  padding: 2rem;
+  max-width: 600px;
+  margin: auto;
+  color: var(--text);
+  background-color: var(--bg);
+}
+
+.float-slider-container {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+input[type="range"] {
+  width: 100%;
+  accent-color: var(--accent);
+}
+
+.float-info p {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+}
+
+.wear-tier {
+  font-weight: bold;
+  padding: 0.1rem 0.5rem;
+  border-radius: 4px;
+}
+
+.factorynew { color: #9ff; }
+.minimalwear { color: #8f8; }
+.field-tested { color: #ffd700; }
+.well-worn { color: #ffae42; }
+.battlescarred { color: #ff6961; }
+
+.rarity-badge {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--accent);
+}
