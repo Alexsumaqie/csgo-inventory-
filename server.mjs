@@ -44,6 +44,21 @@ app.get('/api/steam-icon/:skinName', async (req, res) => {
   }
 });
 
+// ✅ NEW: Steam market price proxy
+app.get('/api/steam-price', async (req, res) => {
+  const { name } = req.query;
+  if (!name) return res.status(400).json({ error: 'Missing market_hash_name' });
+
+  try {
+    const steamUrl = `https://steamcommunity.com/market/priceoverview/?appid=730&currency=1&market_hash_name=${encodeURIComponent(name)}`;
+    const response = await fetch(steamUrl);
+    const json = await response.json();
+    res.json(json);
+  } catch (err) {
+    console.error('❌ Failed to fetch Steam price:', err);
+    res.status(500).json({ error: 'Failed to fetch Steam price' });
+  }
+});
 
 const PORT = 3001;
 app.listen(PORT, () => {

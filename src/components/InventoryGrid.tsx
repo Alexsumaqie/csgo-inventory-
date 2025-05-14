@@ -56,7 +56,8 @@ const InventoryGrid: React.FC = () => {
     }
 
     try {
-      const url = `/steam/market/priceoverview/?appid=730&currency=1&market_hash_name=${encodeURIComponent(item.market_hash_name)}`;
+      const url = `http://localhost:3000/api/steam-price?name=${encodeURIComponent(item.market_hash_name)}`;
+
       const response = await fetch(url);
       const result = await response.json();
       const finalPrice = result?.lowest_price || result?.median_price || 'Not listed';
