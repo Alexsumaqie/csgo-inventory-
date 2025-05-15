@@ -4,7 +4,6 @@ import { OrbitControls, useGLTF } from '@react-three/drei';
 import useInventory, { InventoryItem } from '../hooks/useInventory';
 import styles from './InventoryGrid.module.css';
 import { rarityToStyle } from './rarityutils';
-import Particles from 'react-particles';
 import { loadFull } from 'tsparticles';
 import { useNavigate } from 'react-router-dom';
 
@@ -56,8 +55,7 @@ const InventoryGrid: React.FC = () => {
     }
 
     try {
-      const url = `http://localhost:3000/api/steam-price?name=${encodeURIComponent(item.market_hash_name)}`;
-
+      const url = `/steam/market/priceoverview/?appid=730&currency=1&market_hash_name=${encodeURIComponent(item.market_hash_name)}`;
       const response = await fetch(url);
       const result = await response.json();
       const finalPrice = result?.lowest_price || result?.median_price || 'Not listed';
@@ -80,30 +78,6 @@ const InventoryGrid: React.FC = () => {
   return (
     <div className={styles.fullScreenContainer}>
       <div className={styles.backgroundAnimated} />
-
-      <Particles
-        id="tsparticles"
-        init={particlesInit}
-        options={{
-          fullScreen: { enable: false },
-          particles: {
-            number: { value: 80 },
-            color: { value: '#ffffff' },
-            size: { value: 1.5 },
-            move: { enable: true, speed: 0.3 },
-            opacity: { value: 0.2 },
-            links: { enable: false }
-          },
-          background: { color: 'transparent' },
-        }}
-        style={{
-          position: 'absolute',
-          width: '100%',
-          height: '100%',
-          zIndex: -6
-        }}
-      />
-
       <div className={styles.wrapper}>
         <div className={styles.container}>
           <div className={styles.title}>Saphira's CS Collection</div>

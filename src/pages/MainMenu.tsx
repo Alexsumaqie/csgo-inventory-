@@ -1,15 +1,7 @@
 // pages/MainMenu.tsx
 import React, { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Particles from 'react-tsparticles';
-import { type Engine } from 'tsparticles-engine';
-import { loadEmittersPlugin } from 'tsparticles-plugin-emitters';
 import './MainMenu.css';
-
-// Load emitters plugin
-const particlesInit = async (engine: Engine) => {
-  await loadEmittersPlugin(engine);
-};
 
 const particlesOptions = {
   fullScreen: { enable: false },
@@ -132,17 +124,6 @@ const MainMenu: React.FC = () => {
   return (
     <div className="main-menu-container">
       <div className="main-menu-overlay" />
-      <Particles
-        id="main-menu-particles"
-        init={particlesInit}
-       options={particlesOptions as any}
-        style={{
-          position: 'absolute',
-          inset: 0,
-          zIndex: 0,
-          pointerEvents: 'none',
-        }}
-      />
       <div className="main-menu-wrapper">
         <div className="changelog-panel">
           <h2 className="changelog-title neon-text">🛠️ Version Log</h2>
