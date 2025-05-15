@@ -27,7 +27,7 @@ type ParsedNews = {
 export default function News() {
   const [news, setNews] = useState<NewsItem[]>([]);
   const [loading, setLoading] = useState(true);
-  const [carouselIndex, setCarouselIndex] = useState(0);
+  const [carouselIndexes, setCarouselIndexes] = useState<Record<string, number>>({});
   const contentRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
   useEffect(() => {
@@ -36,6 +36,11 @@ export default function News() {
       .then((data) => {
         const items = data.appnews?.newsitems ?? [];
         setNews(items);
+        const indexMap: Record<string, number> = {};
+        items.forEach(item => {
+          indexMap[item.gid] = 0;
+        });
+        setCarouselIndexes(indexMap);
         setLoading(false);
       })
       .catch((err) => {
@@ -67,7 +72,7 @@ export default function News() {
 
     bbcodeText = bbcodeText.replace(
       /\[(AUDIO|MAPS|GRAPHICS|MISC|MISSIONS|UI|GAMEPLAY|VIDEO|ENGINE|PREMIER|NETWORKING|INPUT|HUD|ANIMATION|SOUND|LINUX|WINDOWS|XP|MAC|RANKS)\]/gi,
-      (_, tag) => `<div class=\"bb-badge\">${SECTION_ICONS[tag.toUpperCase()] || '📁'} ${tag.toUpperCase()}</div>`
+      (_, tag) => `<div class="bb-badge">${SECTION_ICONS[tag.toUpperCase()] || '📁'} ${tag.toUpperCase()}</div>`
     );
 
     bbcodeText = bbcodeText
@@ -79,28 +84,25 @@ export default function News() {
     return { html: bbcodeText.trim(), carouselImages, videoLinks };
   };
 
+  // Auto-cycle carousel per news card
   useEffect(() => {
-    if (news.length === 0) return;
-    const currentImages = news.flatMap((item) => parseNewsContent(item.contents).carouselImages);
-    if (currentImages.length < 2) return;
-
     const interval = setInterval(() => {
-      setCarouselIndex((prev) => (prev + 1) % currentImages.length);
+      setCarouselIndexes((prev) => {
+        const updated = { ...prev };
+        news.forEach(item => {
+          const { carouselImages } = parseNewsContent(item.contents);
+          if (carouselImages.length > 1) {
+            const current = prev[item.gid] ?? 0;
+            updated[item.gid] = (current + 1) % carouselImages.length;
+          } else {
+            updated[item.gid] = 0;
+          }
+        });
+        return updated;
+      });
     }, 5000);
     return () => clearInterval(interval);
   }, [news]);
-
-  useEffect(() => {
-    const handleGamepad = () => {
-      const gamepads = navigator.getGamepads();
-      const gp = gamepads[0];
-      if (!gp) return;
-      if (gp.buttons[6].pressed) setCarouselIndex((i) => (i === 0 ? 0 : i - 1));
-      if (gp.buttons[7].pressed) setCarouselIndex((i) => i + 1);
-    };
-    const interval = setInterval(handleGamepad, 200);
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <div className="news-page">
@@ -113,6 +115,7 @@ export default function News() {
 
       {news.map((item) => {
         const { html, carouselImages, videoLinks } = parseNewsContent(item.contents);
+        const currentIndex = carouselIndexes[item.gid] ?? 0;
 
         return (
           <motion.div
@@ -133,7 +136,6 @@ export default function News() {
               ref={(el) => {
                 contentRefs.current[item.gid] = el;
               }}
-
               className="prose prose-invert max-w-none leading-relaxed"
               dangerouslySetInnerHTML={{ __html: html }}
             />
@@ -141,14 +143,33 @@ export default function News() {
             {carouselImages.length > 0 && (
               <div className="carousel-container">
                 <div className="carousel-controls">
-                  <button onClick={() => setCarouselIndex((prev) => prev === 0 ? carouselImages.length - 1 : prev - 1)}>‹</button>
-                  <span>{carouselIndex + 1} / {carouselImages.length}</span>
-                  <button onClick={() => setCarouselIndex((prev) => (prev + 1) % carouselImages.length)}>›</button>
+                  <button
+                    onClick={() => {
+                      setCarouselIndexes((prev) => ({
+                        ...prev,
+                        [item.gid]: (prev[item.gid] - 1 + carouselImages.length) % carouselImages.length,
+                      }));
+                    }}
+                  >
+                    ‹
+                  </button>
+                  <span>{currentIndex + 1} / {carouselImages.length}</span>
+                  <button
+                    onClick={() => {
+                      setCarouselIndexes((prev) => ({
+                        ...prev,
+                        [item.gid]: (prev[item.gid] + 1) % carouselImages.length,
+                      }));
+                    }}
+                  >
+                    ›
+                  </button>
                 </div>
+
                 <AnimatePresence mode="wait">
                   <motion.img
-                    key={carouselImages[carouselIndex]}
-                    src={carouselImages[carouselIndex]}
+                    key={carouselImages[currentIndex]}
+                    src={carouselImages[currentIndex]}
                     alt="CS2 news image"
                     initial={{ opacity: 0, scale: 0.98 }}
                     animate={{ opacity: 1, scale: 1 }}
