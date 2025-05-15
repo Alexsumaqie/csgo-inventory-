@@ -2,13 +2,17 @@
 
 import React, { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { loadFull } from 'tsparticles';
-import './MainMenu.css';
+import { loadSlim } from 'tsparticles-slim'; // ✅ smaller + works
+import './Marketplace.css';
 import type { ISourceOptions } from 'tsparticles-engine';
+import type { Engine } from 'tsparticles-engine';
+import Particles from 'react-tsparticles';
 
-const particlesInit = async (main: any) => {
-  await loadFull(main);
+
+const particlesInit = async (engine: Engine) => {
+  await loadSlim(engine);
 };
+
 
 const particlesOptions: ISourceOptions = {
   fullScreen: { enable: false },
@@ -98,6 +102,73 @@ const MainMenu: React.FC = () => {
   return (
     <div className="main-menu-container">
       <div className="main-menu-overlay" />
+      <div className="main-menu-wrapper">
+      <div className="changelog-panel">
+        <h2 className="changelog-title neon-text">🛠️ Version Log</h2>
+        <ul className="changelog-list">
+          <li className="changelog-entry"><span className="version-tag">v1.0.1</span> Fixed News carousel parsing (Steam CDN support)</li>
+          <li className="changelog-entry"><span className="version-tag">v1.0.0</span> Initial hub launch: Inventory, News, Marketplace</li>
+          <li className="changelog-entry"><span className="version-tag">v0.9.0</span> Layout prototyping and UI design tests</li>
+        </ul>
+
+        <Particles
+          id="changelog-particles"
+          init={particlesInit}
+          options={{
+            fullScreen: { enable: false },
+            background: { color: 'transparent' },
+            fpsLimit: 60,
+            interactivity: {
+              events: {
+                onClick: { enable: true, mode: 'repulse' },
+                onHover: { enable: true, mode: 'grab' },
+                resize: true,
+              },
+              modes: {
+                grab: { distance: 120, links: { opacity: 0.5 } },
+                repulse: { distance: 150 },
+              },
+            },
+            particles: {
+              number: { value: 15 },
+              shape: {
+                type: 'char',
+                character: [
+                  { value: '💎', font: 'Verdana', weight: '400' },
+                  { value: '🎯', font: 'Verdana', weight: '400' },
+                  { value: '🔫', font: 'Verdana', weight: '400' },
+                  { value: '❤️', font: 'Verdana', weight: '400' },
+                ],
+              },
+              color: { value: ['#00ffff', '#ff00ff', '#ffffff'] },
+              size: {
+                value: 16,
+                random: { enable: true, minimumValue: 12 },
+              },
+              opacity: {
+                value: 0.7,
+                random: true,
+                animation: { enable: true, speed: 0.4, minimumValue: 0.3 },
+              },
+              move: {
+                enable: true,
+                speed: 0.6,
+                direction: 'none',
+                outModes: { default: 'bounce' },
+              },
+            },
+            detectRetina: true,
+          }}
+          style={{
+            position: 'absolute',
+            inset: 0,
+            zIndex: 0,
+            pointerEvents: 'auto',
+          }}
+        />
+      </div>
+</div>
+
       <div className="main-menu-inner">
         <h1 className="main-title">💎 Saphira's CS Hub</h1>
         <p className="terminal-hint">💻 Press <b>Ctrl + Shift + T</b> to enter Terminal Mode</p>

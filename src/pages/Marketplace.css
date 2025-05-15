@@ -708,3 +708,200 @@ button.close-modal:hover {
   background: linear-gradient(to right, #06b6d4, #10b981);
   transform: translateY(-1px);
 }
+.marketplace-container {
+  padding: 2rem 1rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  color: #fff;
+  background: radial-gradient(circle at top, #0f172a, #020617);
+  min-height: 100vh;
+  padding-bottom: 5rem;
+  animation: fadeInGlow 1s ease-out;
+}
+
+@keyframes fadeInGlow {
+  from {
+    opacity: 0;
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+.marketplace-header h2 {
+  font-size: 2.5rem;
+  background: linear-gradient(90deg, #0ea5e9, #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 10px #0ea5e955;
+  animation: pulseGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes pulseGlow {
+  from {
+    text-shadow: 0 0 10px #0ea5e955;
+  }
+  to {
+    text-shadow: 0 0 20px #a855f7aa;
+  }
+}
+
+.cart-display {
+  font-weight: bold;
+  background: linear-gradient(to right, #0ea5e9, #3b82f6);
+  color: #fff;
+  padding: 0.4rem 1rem;
+  border-radius: 10px;
+  box-shadow: 0 0 15px #0ea5e9;
+  transition: all 0.3s ease;
+  animation: floatCart 2s ease-in-out infinite alternate;
+}
+
+@keyframes floatCart {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-4px);
+  }
+}
+
+.skin-card {
+  background: #1e293b;
+  border-radius: 15px;
+  padding: 1rem 1.2rem;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.4s ease;
+  animation: popInCard 0.5s ease;
+}
+
+@keyframes popInCard {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.skin-card:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 20px #22d3ee;
+  cursor: pointer;
+}
+
+.type-tag {
+  background: linear-gradient(135deg, #3b82f6, #0ea5e9);
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  color: white;
+  box-shadow: 0 0 8px #22d3ee88;
+}
+
+.panel-img {
+  max-width: 250px;
+  margin-bottom: 1.5rem;
+  filter: drop-shadow(0 0 12px rgba(0, 255, 255, 0.5));
+  transition: transform 0.3s ease;
+}
+
+.panel-img:hover {
+  transform: scale(1.05);
+}
+
+.toast {
+  background-color: #1e293b;
+  border: 1px solid #38bdf8;
+  box-shadow: 0 0 15px #38bdf8;
+  animation: toastBounce 2.5s ease forwards;
+}
+
+@keyframes toastBounce {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  10%, 90% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+}
+
+button {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.15), transparent);
+  transition: all 0.5s ease;
+  z-index: 0;
+}
+
+button:hover::before {
+  left: 0;
+}
+
+.save-wishlist-btn {
+  box-shadow: 0 0 10px #10b981;
+  animation: glowSave 2s infinite ease-in-out;
+}
+
+@keyframes glowSave {
+  0% { box-shadow: 0 0 8px #10b981; }
+  50% { box-shadow: 0 0 20px #06b6d4; }
+  100% { box-shadow: 0 0 8px #10b981; }
+}
+
+.marketplace-header select {
+  animation: fadeInSelect 1s ease;
+}
+
+@keyframes fadeInSelect {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Add a glow effect on modal side panel */
+.side-panel {
+  box-shadow: -10px 0 40px #38bdf8aa;
+  border-left: 2px solid #38bdf8;
+  animation: slideGlow 0.5s ease;
+}
+
+@keyframes slideGlow {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* Smooth float for wishlist input */
+.wishlist-input {
+  animation: floatInput 0.5s ease;
+}
+
+@keyframes floatInput {
+  from {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

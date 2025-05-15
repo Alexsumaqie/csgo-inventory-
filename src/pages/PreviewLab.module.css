@@ -355,3 +355,241 @@
   0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
   50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.9; }
 }
+.wrapper {
+  display: flex;
+  height: 100vh;
+  background: linear-gradient(to right, #0c0f1f, #14192d);
+  font-family: 'Segoe UI', sans-serif;
+  color: #ffffff;
+  overflow: hidden;
+  animation: fadeSlideIn 0.6s ease-out;
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.leftPanel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem;
+  position: relative;
+}
+
+.imageCard {
+  position: relative;
+  display: inline-block;
+  max-width: 520px;
+  animation: popIn 0.7s ease;
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.weaponImage {
+  width: 100%;
+  max-height: 400px;
+  object-fit: contain;
+  border-radius: 12px;
+  border: 1px solid #333;
+  box-shadow: 0 0 24px rgba(0, 255, 255, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.weaponImage:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 32px rgba(0, 255, 255, 0.25);
+}
+
+.wearOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("/scratches.png"), rgba(0, 0, 0, 0.3);
+  background-blend-mode: multiply;
+  background-size: cover;
+  border-radius: 12px;
+  pointer-events: none;
+  transition: opacity 0.25s ease-in-out;
+}
+
+.zoomCue {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 0.75rem;
+  color: #ccc;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 4px 8px;
+  border-radius: 6px;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.sliderContainer {
+  margin-top: 2rem;
+  width: 80%;
+  text-align: center;
+}
+
+.floatText {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  color: #a7f3d0;
+  text-shadow: 0 0 4px rgba(0, 255, 255, 0.2);
+}
+
+.rightPanel {
+  width: 440px;
+  padding: 2.5rem;
+  backdrop-filter: blur(14px);
+  background: rgba(22, 26, 40, 0.85);
+  border-left: 1px solid #2c3445;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: -8px 0 24px rgba(0, 0, 0, 0.4);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.skinName {
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: #fefefe;
+}
+
+.typeText {
+  font-size: 1rem;
+  color: #ccc;
+  font-weight: 500;
+}
+
+.meta {
+  font-size: 0.95rem;
+  color: #bbb;
+}
+
+.inspectLink {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #4fc3f7;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.inspectLink:hover {
+  color: #81d4fa;
+}
+
+.backButton {
+  width: 100%;
+  margin-top: 2rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #10b981, #06b6d4);
+  border-radius: 12px;
+  transition: background 0.25s ease-in-out;
+}
+
+.backButton:hover {
+  background: linear-gradient(90deg, #06d6a0, #00b4d8);
+}
+
+/* Rarity tags */
+.rarityPill {
+  position: relative;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  color: white;
+  box-shadow: 0 0 10px rgba(255,255,255,0.15);
+  backdrop-filter: blur(6px);
+  background: rgba(255,255,255,0.05);
+  display: inline-block;
+  animation: fadeIn 0.6s ease;
+}
+
+.rarityPill::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 140%;
+  height: 140%;
+  border-radius: 999px;
+  background: radial-gradient(ellipse at center, rgba(255,255,255,0.05), transparent);
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  animation: pulseAura 2.4s infinite ease-in-out;
+}
+
+@keyframes pulseAura {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0.8;
+  }
+}
+
+.rarityCovert {
+  color: #ff4b5c;
+  text-shadow: 0 0 12px rgba(255, 75, 92, 0.9);
+}
+.rarityClassified {
+  color: #b46ff2;
+  text-shadow: 0 0 10px rgba(180, 111, 242, 0.8);
+}
+.rarityRestricted {
+  color: #c880ff;
+  text-shadow: 0 0 10px rgba(200, 128, 255, 0.6);
+}
+.rarityMilSpec {
+  color: #4fa8ff;
+  text-shadow: 0 0 10px rgba(79, 168, 255, 0.7);
+}
+.rarityConsumer {
+  color: #bbb;
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.3);
+}
+
+.centerScreen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #0c0f1f;
+  text-align: center;
+}

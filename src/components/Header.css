@@ -136,3 +136,45 @@
   box-shadow: 0 0 10px #00ffee55;
   margin-left: auto;
 }
+.music-toggle {
+  position: relative;
+  background: #0f172a;
+  color: #72f9ff;
+  border: 1px solid #00ffff55;
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  margin-left: 1rem;
+  cursor: pointer;
+  box-shadow: 0 0 10px #00ffff33;
+  transition: all 0.2s ease;
+}
+.music-toggle:hover {
+  background: #164e63;
+  box-shadow: 0 0 20px #00ffff66;
+}
+
+.music-toggle.playing .glow-bar {
+  animation: pulse-glow 1.4s infinite;
+}
+
+.glow-bar {
+  position: absolute;
+  bottom: -4px;
+  left: 10%;
+  width: 80%;
+  height: 2px;
+  background: linear-gradient(to right, #00ffff, #ff00ff);
+  border-radius: 9999px;
+  opacity: 0.8;
+}
+
+@keyframes pulse-glow {
+  0% { transform: scaleX(1); opacity: 0.6; }
+  50% { transform: scaleX(1.2); opacity: 1; }
+  100% { transform: scaleX(1); opacity: 0.6; }
+}
+
+.yt-player {
+  display: none;
+}

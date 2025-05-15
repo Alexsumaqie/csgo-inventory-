@@ -276,3 +276,144 @@ header {
     width: 100%;
     z-index: 999;
 }
+.changelog-panel {
+  position: absolute;
+  left: 2rem;
+  top: 8rem;
+  background: rgba(23, 23, 23, 0.85);
+  border: 1px solid #00ffc3;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  max-width: 300px;
+  font-family: 'Courier New', monospace;
+  color: #d1f0ff;
+  box-shadow: 0 0 15px #00ffc3aa;
+  animation: fadeInLeft 0.5s ease-out forwards;
+}
+
+.changelog-title {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #80ffea;
+}
+
+.changelog-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.4rem;
+}
+
+.changelog-list li {
+  margin-bottom: 0.5rem;
+}
+
+.version-tag {
+  color: #00ffff;
+  background: #222;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.4rem;
+  margin-right: 0.5rem;
+  font-weight: bold;
+}
+
+/* Animate in */
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.changelog-panel {
+  position: absolute;
+  left: 2rem;
+  top: 8rem;
+  background: rgba(18, 18, 28, 0.85);
+  backdrop-filter: blur(8px);
+  border: 2px solid #0ff;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  max-width: 320px;
+  font-family: 'Courier New', monospace;
+  color: #d1f0ff;
+  box-shadow: 0 0 12px #00fff7aa, 0 0 30px #00fff766;
+  animation: slideFadeIn 0.8s ease-out both;
+  z-index: 10;
+}
+
+.changelog-title {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  color: #72f9ff;
+  text-shadow: 0 0 8px #0ff;
+  animation: flicker 1.6s linear infinite;
+}
+
+.changelog-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.changelog-entry {
+  margin-bottom: 0.8rem;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: entryFade 0.4s ease forwards;
+}
+.changelog-entry:nth-child(1) { animation-delay: 0.3s; }
+.changelog-entry:nth-child(2) { animation-delay: 0.5s; }
+.changelog-entry:nth-child(3) { animation-delay: 0.7s; }
+
+.version-tag {
+  color: #00ffff;
+  background: #111;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.4rem;
+  margin-right: 0.5rem;
+  font-weight: bold;
+  text-shadow: 0 0 4px #0ff;
+  animation: pulseGlow 2.5s infinite alternate;
+}
+
+/* Animations */
+@keyframes slideFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes entryFade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseGlow {
+  from {
+    box-shadow: 0 0 5px #00ffff99;
+  }
+  to {
+    box-shadow: 0 0 12px #00ffffdd, 0 0 20px #00ffff88;
+  }
+}
+
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 100% {
+    opacity: 1;
+  }
+  20%, 22% {
+    opacity: 0.5;
+  }
+}
