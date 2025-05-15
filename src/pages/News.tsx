@@ -32,7 +32,14 @@ export default function News() {
 
   useEffect(() => {
     fetch('/api/csnews')
-      .then((res) => res.json())
+      .then(async (res) => {
+        const contentType = res.headers.get('content-type');
+        if (contentType && contentType.includes('application/json')) {
+          return res.json();
+        } else {
+          throw new Error('Expected JSON, got HTML');
+        }
+      })
       .then((data) => {
         const items = data.appnews?.newsitems ?? [];
         setNews(items);
@@ -45,9 +52,20 @@ export default function News() {
       })
       .catch((err) => {
         console.error('❌ Failed to load CS news:', err);
+        setNews([
+          {
+            gid: 'error',
+            title: 'Failed to load news',
+            url: '',
+            contents: '[MISC] Unable to fetch Steam news on this deployment. Please try again later.',
+            date: Date.now() / 1000
+          }
+        ]);
+        setCarouselIndexes({ error: 0 });
         setLoading(false);
       });
   }, []);
+
 
   const parseNewsContent = (raw: string): ParsedNews => {
     let bbcodeText = raw;
