@@ -1,52 +1,85 @@
 // pages/MainMenu.tsx
-
 import React, { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { loadSlim } from 'tsparticles-slim'; // ✅ smaller + works
-import './Marketplace.css';
-import type { ISourceOptions } from 'tsparticles-engine';
-import type { Engine } from 'tsparticles-engine';
 import Particles from 'react-tsparticles';
+import { type Engine } from 'tsparticles-engine';
+import { loadEmittersPlugin } from 'tsparticles-plugin-emitters';
+import './MainMenu.css';
 
-
+// Load emitters plugin
 const particlesInit = async (engine: Engine) => {
-  await loadSlim(engine);
+  await loadEmittersPlugin(engine);
 };
 
-
-const particlesOptions: ISourceOptions = {
+const particlesOptions = {
   fullScreen: { enable: false },
   background: { color: { value: 'transparent' } },
   fpsLimit: 60,
-  particles: {
-    number: {
-      value: 20,
-      density: { enable: true, area: 700 },
-    },
-    shape: {
-      type: 'char',
-      character: [
-        { value: '💎', font: 'Verdana', style: '', weight: '400' },
-        { value: '🔫', font: 'Verdana', style: '', weight: '400' },
-        { value: '❤️', font: 'Verdana', style: '', weight: '400' },
-        { value: '🎲', font: 'Verdana', style: '', weight: '400' },
-      ],
-    },
-    color: { value: ['#ffffff', '#ff00c8', '#00ffff', '#f472b6'] },
-    opacity: {
-      value: 0.9,
-      random: true,
-      animation: { enable: true, speed: 0.6, minimumValue: 0.3, sync: false },
+  emitters: {
+    direction: 'top',
+    rate: {
+      delay: 0.2,
+      quantity: 3,
     },
     size: {
-      value: 24,
-      random: { enable: true, minimumValue: 18 },
+      width: 100,
+      height: 0,
+    },
+    position: {
+      x: 50,
+      y: 100,
+    },
+  },
+  particles: {
+    number: {
+      value: 0,
+    },
+    color: {
+      value: ['#00ffff', '#ff00ff', '#ffffff'],
+    },
+    shape: {
+      type: 'circle',
+    },
+    opacity: {
+      value: 0.7,
+      animation: {
+        enable: true,
+        speed: 0.5,
+        minimumValue: 0.3,
+        sync: false,
+      },
+    },
+    size: {
+      value: 6,
+      random: { enable: true, minimumValue: 3 },
+      animation: {
+        enable: true,
+        speed: 5,
+        minimumValue: 1,
+        sync: false,
+      },
+    },
+    life: {
+      duration: {
+        sync: true,
+        value: 4,
+      },
+      count: 1,
     },
     move: {
       enable: true,
-      speed: 0.6,
-      direction: 'none' as const,
-      outModes: { default: 'out' },
+      gravity: {
+        enable: true,
+        acceleration: 5,
+      },
+      speed: { min: 5, max: 20 },
+      decay: 0.1,
+      direction: 'top',
+      straight: false,
+      outModes: {
+        default: 'destroy',
+        bottom: 'none',
+      },
     },
   },
 };
@@ -55,7 +88,6 @@ const MainMenu: React.FC = () => {
   const navigate = useNavigate();
   const buttonRefs = useRef<HTMLButtonElement[]>([]);
 
-  // 🎮 Arrow key navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       const active = document.activeElement;
@@ -74,7 +106,6 @@ const MainMenu: React.FC = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  // 💻 Terminal mode easter egg: Ctrl+Shift+T
   useEffect(() => {
     const toggleTerminal = (e: KeyboardEvent) => {
       if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 't') {
@@ -88,7 +119,7 @@ const MainMenu: React.FC = () => {
   const menuItems: [string, string][] = [
     ['🎒 My Inventory', '/inventory'],
     ['🛒 Marketplace', '/marketplace'],
-    [' 📰 News', '/News'],
+    ['📰 News', '/News'],
     ['🧪 Skin Preview Lab', '/preview-lab'],
     ['🎲 CS2 Trivia', '/Trivia'],
     ['🎯 Aim Trainer', '/Aimtrainer'],
@@ -96,78 +127,32 @@ const MainMenu: React.FC = () => {
     ['🏆 Achievements', '/achievements'],
     ['🎧 Music Kits Coming soon...', '/music-kits'],
     ['🧰 Utilities Coming soon ...', '/utilities'],
-
   ];
 
   return (
     <div className="main-menu-container">
       <div className="main-menu-overlay" />
+      <Particles
+        id="main-menu-particles"
+        init={particlesInit}
+       options={particlesOptions as any}
+        style={{
+          position: 'absolute',
+          inset: 0,
+          zIndex: 0,
+          pointerEvents: 'none',
+        }}
+      />
       <div className="main-menu-wrapper">
-      <div className="changelog-panel">
-        <h2 className="changelog-title neon-text">🛠️ Version Log</h2>
-        <ul className="changelog-list">
-          <li className="changelog-entry"><span className="version-tag">v1.0.1</span> Fixed News carousel parsing (Steam CDN support)</li>
-          <li className="changelog-entry"><span className="version-tag">v1.0.0</span> Initial hub launch: Inventory, News, Marketplace</li>
-          <li className="changelog-entry"><span className="version-tag">v0.9.0</span> Layout prototyping and UI design tests</li>
-        </ul>
-
-        <Particles
-          id="changelog-particles"
-          init={particlesInit}
-          options={{
-            fullScreen: { enable: false },
-            background: { color: 'transparent' },
-            fpsLimit: 60,
-            interactivity: {
-              events: {
-                onClick: { enable: true, mode: 'repulse' },
-                onHover: { enable: true, mode: 'grab' },
-                resize: true,
-              },
-              modes: {
-                grab: { distance: 120, links: { opacity: 0.5 } },
-                repulse: { distance: 150 },
-              },
-            },
-            particles: {
-              number: { value: 15 },
-              shape: {
-                type: 'char',
-                character: [
-                  { value: '💎', font: 'Verdana', weight: '400' },
-                  { value: '🎯', font: 'Verdana', weight: '400' },
-                  { value: '🔫', font: 'Verdana', weight: '400' },
-                  { value: '❤️', font: 'Verdana', weight: '400' },
-                ],
-              },
-              color: { value: ['#00ffff', '#ff00ff', '#ffffff'] },
-              size: {
-                value: 16,
-                random: { enable: true, minimumValue: 12 },
-              },
-              opacity: {
-                value: 0.7,
-                random: true,
-                animation: { enable: true, speed: 0.4, minimumValue: 0.3 },
-              },
-              move: {
-                enable: true,
-                speed: 0.6,
-                direction: 'none',
-                outModes: { default: 'bounce' },
-              },
-            },
-            detectRetina: true,
-          }}
-          style={{
-            position: 'absolute',
-            inset: 0,
-            zIndex: 0,
-            pointerEvents: 'auto',
-          }}
-        />
+        <div className="changelog-panel">
+          <h2 className="changelog-title neon-text">🛠️ Version Log</h2>
+          <ul className="changelog-list">
+            <li className="changelog-entry"><span className="version-tag">v1.0.1</span> Fixed News carousel parsing (Steam CDN support)</li>
+            <li className="changelog-entry"><span className="version-tag">v1.0.0</span> Initial hub launch: Inventory, News, Marketplace</li>
+            <li className="changelog-entry"><span className="version-tag">v0.9.0</span> Layout prototyping and UI design tests</li>
+          </ul>
+        </div>
       </div>
-</div>
 
       <div className="main-menu-inner">
         <h1 className="main-title">💎 Saphira's CS Hub</h1>
@@ -180,7 +165,6 @@ const MainMenu: React.FC = () => {
               ref={(el) => { if (el) buttonRefs.current[idx] = el; }}
               tabIndex={0}
               onClick={(e) => {
-                // ripple (optional)
                 const rect = e.currentTarget.getBoundingClientRect();
                 e.currentTarget.style.setProperty('--x', `${e.clientX - rect.left}px`);
                 e.currentTarget.style.setProperty('--y', `${e.clientY - rect.top}px`);

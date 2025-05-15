@@ -18,6 +18,9 @@
     "@radix-ui/react-slot": "^1.2.2",
     "@react-three/drei": "^10.0.7",
     "@react-three/fiber": "^9.1.2",
+    "@tsparticles/all": "^3.8.1",
+    "@tsparticles/engine": "^3.8.1",
+    "@tsparticles/react": "^3.0.0",
     "axios": "^1.9.0",
     "bbcode-to-html": "^1.0.2",
     "cheerio": "^1.0.0",
@@ -38,7 +41,7 @@
     "tailwind-merge": "^3.3.0",
     "three": "^0.176.0",
     "tsparticles": "^3.8.1",
-    "tsparticles-slim": "^2.12.0"
+    "tsparticles-plugin-emitters": "^2.12.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
